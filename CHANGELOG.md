@@ -1,4 +1,5 @@
-## Unreleased
+## 3.0.5-nordix-1
+  - Add support for CRL to check for the server certificate is revocation status.
   - Support loading of PKCS8 EC private keys.
 
 ## 3.0.5
