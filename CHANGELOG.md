@@ -1,3 +1,6 @@
+## Unreleased
+  - Support loading of PKCS8 EC private keys.
+
 ## 3.0.5
   - Docs: Set the default_codec doc attribute.
 
