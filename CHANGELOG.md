@@ -1,3 +1,10 @@
+## 3.0.5-nordix-2
+  - The SNI (Server Name Indication) extension is now used when connecting to syslog server with TLS and `host` is set to FQDN (Fully Qualified Domain Name).
+
+## 3.0.5-nordix-1
+  - Add support for CRL to check for the server certificate is revocation status.
+  - Support loading of PKCS8 EC private keys.
+
 ## 3.0.5
   - Docs: Set the default_codec doc attribute.
 
@@ -37,4 +44,3 @@
  - Plugins were updated to follow the new shutdown semantic, this mainly allows Logstash to instruct input plugins to terminate gracefully,
    instead of using Thread.raise on the plugins' threads. Ref: https://github.com/elastic/logstash/pull/3895
  - Dependency on logstash-core update to 2.0
-
