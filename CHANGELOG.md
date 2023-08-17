@@ -1,3 +1,6 @@
+## 3.0.5-nordix-3
+  - Added support for RFC5424 structured data.
+
 ## 3.0.5-nordix-2
   - The SNI (Server Name Indication) extension is now used when connecting to syslog server with TLS and `host` is set to FQDN (Fully Qualified Domain Name).
 
