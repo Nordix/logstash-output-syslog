@@ -54,6 +54,10 @@ class LogStash::Outputs::Syslog < LogStash::Outputs::Base
     "debug",
   ]
 
+  # constants for Linux socket options, which are missing from jruby socket implementation.
+  IP_TOS = 1
+  IPV6_TCLASS = 64
+
   # syslog server address to connect to
   config :host, :validate => :string, :required => true
 
@@ -127,6 +131,10 @@ class LogStash::Outputs::Syslog < LogStash::Outputs::Base
 
   # RFC5424 structured data.
   config :structured_data, :validate => :string, :default => ""
+
+  # socket options for syslog socket.
+  #
+  config :socket_options, :validate => :array
 
   def register
     @client_socket = nil
@@ -227,6 +235,16 @@ class LogStash::Outputs::Syslog < LogStash::Outputs::Base
           sleep(5)
           raise
         end
+      end
+    end
+    if !@socket_options.empty?
+      require "socket"
+      if @socket_options.has_key?("tos")
+        puts "Setting TOS to #{@socket_options["tos"]}"
+        socket.setsockopt(Socket::IPPROTO_IP, IP_TOS, @socket_options["tos"])
+      end
+      if @socket_options.has_key?("traffic_class")
+        socket.setsockopt(Socket::IPPROTO_IPV6, IPV6_TCLASS, @socket_options["traffic_class"])
       end
     end
     socket
