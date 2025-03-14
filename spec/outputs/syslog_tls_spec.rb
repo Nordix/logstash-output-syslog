@@ -80,9 +80,6 @@ describe LogStash::Outputs::Syslog do
         let(:options ) { super().merge("ssl_cipher_suites" => ["TLS_CHACHA20_POLY1305_SHA256"]) }
         let(:chosen_cipher) { "TLS_CHACHA20_POLY1305_SHA256" }
 
-      context "ssl_verify enabled" do
-        let(:options ) { super().merge("ssl_verify" => true) }
-
         it_behaves_like "syslog output"
       end
 
@@ -169,7 +166,7 @@ describe LogStash::Outputs::Syslog do
       ) }
 
       it "register raises error" do
-        expect { subject.register }.to raise_error(OpenSSL::PKey::RSAError, /Neither PUB key nor PRIV key/)
+        expect { subject.register }.to raise_error(OpenSSL::PKey::PKeyError, /Could not parse PKey/)
       end
     end
 

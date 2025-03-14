@@ -249,8 +249,6 @@ class LogStash::Outputs::Syslog < LogStash::Outputs::Base
     socket
   end
 
-  CRL_END_TAG = "\n-----END X509 CRL-----\n"
-
   def setup_ssl
     require "openssl"
     ssl_context = OpenSSL::SSL::SSLContext.new
